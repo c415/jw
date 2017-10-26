@@ -33,7 +33,7 @@ hs_err_pid*
 
 #maven ignore
 target/
-
+out/
 #eclipse ignore
 .settins/
 .project
