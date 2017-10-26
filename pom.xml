@@ -30,6 +30,12 @@
             <artifactId>shiro-core</artifactId>
             <version>1.2.3</version>
         </dependency>
+        <!--c3p0链接池-->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.5.2</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>

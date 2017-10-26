@@ -50,7 +50,7 @@
             </value>
         </property>
     </bean>
-
+    <context:component-scan base-package="com.jw"/>
 
     <!-- 配置securityManager -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">

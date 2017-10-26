@@ -32,16 +32,16 @@
     <mvc:annotation-driven conversion-service="conversionService">
     </mvc:annotation-driven>
 
-    <!--&lt;!&ndash;自定义参数绑定组件&ndash;&gt;-->
-    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->
-        <!--&lt;!&ndash; 转换器 &ndash;&gt;-->
-        <!--<property name="converters">-->
-            <!--<set>-->
-                <!--&lt;!&ndash; 日期类型转换 &ndash;&gt;-->
-                <!--<bean class="com.system.controller.converter.CustomDateConverter"/>-->
-            <!--</set>-->
-        <!--</property>-->
-    <!--</bean>-->
+    <!--自定义参数绑定组件-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <!-- 转换器 -->
+        <property name="converters">
+            <set>
+                <!-- 日期类型转换 -->
+                <bean class="com.jw.controller.converter.CustomDateConverter"/>
+            </set>
+        </property>
+    </bean>
 
 
     <!--全局错误信息处理器
