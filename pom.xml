@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>groupId</groupId>
+    <groupId>jw</groupId>
     <artifactId>jw</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-
+    <name>jw1 Maven Webapp</name>
+    <url>http://maven.apache.org</url>
     <dependencies>
 
         <dependency>
@@ -152,7 +151,7 @@
 
 
     <build>
-        <finalName>Examination_System</finalName>
+        <finalName>jw</finalName>
         <!--在IDEA中maven 默认编译的时候   只搬运src/main/java里面的java文件到target/classes,其他文件会被忽略-->
         <!--这时，我们Mybatis的Mapper.xml文件就不能被加载进去，也就是不能映射成功-->
         <!--下面配置就能解决这个问题-->
@@ -165,5 +164,4 @@
             </resource>
         </resources>
     </build>
-
 </project>
