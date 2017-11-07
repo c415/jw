@@ -47,7 +47,7 @@
     <!--全局错误信息处理器
     只要实现HandlerExceptionResolver接口就是全局异常处理器
     -->
-    <!--<bean class="com.system.exception.CustomExceptionResolver"/>-->
+    <bean class="com.jw.exception.CustomExceptionResolver"/>
 
     <!--视图解析器-->
     <!--

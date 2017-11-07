@@ -39,21 +39,24 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="firstname" class="col-sm-3 control-label">账号：</label>
+          <label for="userID" class="col-sm-3 control-label">账号：</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" id="userID" placeholder="请输入账号" name="username">
+            <input type="text" class="form-control" id="userID" required  placeholder="请输入账号" name="username">
           </div>
         </div>
         <div class="form-group">
-          <label for="lastname" class="col-sm-3 control-label">密码：</label>
+          <label for="password" class="col-sm-3 control-label">密码：</label>
           <div class="col-sm-9">
-            <input type="password" class="form-control" id="password" placeholder="请输入密码" name="password">
+            <input type="password" class="form-control" id="password" required placeholder="请输入密码" name="password">
           </div>
         </div>
         <div class="form-group">
 
           <div class="col-sm-9 " style="margin-left: 15px;">
             <input type="checkbox" />记住密码
+            <div style="text-align: center; color: #ff4652;">
+              ${message}
+            </div>
           </div>
           <div class=" col-sm-3 pull-right" style="margin-right: 15px;">
             <button type="submit" class="btn  btn-warning">登录</button>
