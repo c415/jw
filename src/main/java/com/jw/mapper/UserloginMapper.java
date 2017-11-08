@@ -1,11 +1,9 @@
 package com.jw.mapper;
 
 import com.jw.pojo.Userlogin;
-import com.jw.pojo.Userlogin;
 import com.jw.pojo.UserloginExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserloginMapper {
     int countByExample(UserloginExample example);

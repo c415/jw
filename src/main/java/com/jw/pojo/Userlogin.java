@@ -1,8 +1,5 @@
 package com.jw.pojo;
 
-import javax.persistence.Entity;
-
-@Entity
 public class Userlogin {
     private Integer userid;
 

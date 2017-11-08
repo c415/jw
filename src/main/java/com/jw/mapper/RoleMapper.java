@@ -2,9 +2,8 @@ package com.jw.mapper;
 
 import com.jw.pojo.Role;
 import com.jw.pojo.RoleExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface RoleMapper {
     int countByExample(RoleExample example);
