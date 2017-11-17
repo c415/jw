@@ -44,8 +44,14 @@ public class StudentServiceImpl implements StudentService {
         return list;
     }
 
+    //保存学生信息
     public Boolean save(StudentCustom studentCustoms) throws Exception {
-        return null;
+        Student student = studentMapper.selectByPrimaryKey(studentCustoms.getUserid());
+        if(student == null){
+            studentMapper.insert(studentCustoms);
+            return true;
+        }
+        return false;
     }
 
     //返回学生数量
