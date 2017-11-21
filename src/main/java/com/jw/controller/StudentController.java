@@ -42,9 +42,12 @@ public class StudentController {
 
         return "student/showCourse";
     }
+<<<<<<< HEAD
     //修改密码
     @RequestMapping(value = "/passwordRest")
     public String passwordRest() throws Exception {
         return "student/passwordRest";
     }
+=======
+>>>>>>> origin/master
 }
