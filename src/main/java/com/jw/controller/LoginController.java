@@ -1,6 +1,7 @@
 package com.jw.controller;
 
 import com.jw.pojo.Userlogin;
+import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
