@@ -1,8 +1,9 @@
-package com.jw.service;
+package com.jw.service.impl;
 
 import com.jw.mapper.SelectedcourseMapper;
 import com.jw.mapper.StudentMapper;
 import com.jw.pojo.*;
+import com.jw.service.SelectedCourseService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

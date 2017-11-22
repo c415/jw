@@ -1,4 +1,4 @@
-package com.jw.service;
+package com.jw.service.impl;
 
 import com.jw.mapper.StudentMapper;
 import com.jw.mapper.StudentMapperCustom;
@@ -6,6 +6,7 @@ import com.jw.pojo.PagingVO;
 import com.jw.pojo.Student;
 import com.jw.pojo.StudentCustom;
 import com.jw.pojo.StudentExample;
+import com.jw.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
