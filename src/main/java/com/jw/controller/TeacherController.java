@@ -68,7 +68,18 @@ public class TeacherController {
         return "teacher/showGrade";
     }
 
+    // 打分链接
+    @RequestMapping(value = "/markLink", method = {RequestMethod.GET})
+        public String markUI(SelectedCourseCustom scc, Model model) throws Exception {
 
+        logger.info("Enter markUI"+model);
+        SelectedCourseCustom selectedCourseCustom = selectedCourseService.findOne(scc);
+
+        model.addAttribute("selectedCourse", selectedCourseCustom);
+
+        logger.info("Exit markUI"+model);
+        return "teacher/mark";
+    }
 
 
 }
