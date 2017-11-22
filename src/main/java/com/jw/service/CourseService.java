@@ -1,7 +1,10 @@
 package com.jw.service;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ada6fb89bbe015b967d3f1d46298d89248f43e0a
 import com.jw.pojo.CourseCustom;
 
 import java.util.List;

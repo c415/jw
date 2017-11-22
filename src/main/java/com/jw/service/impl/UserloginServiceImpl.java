@@ -1,15 +1,16 @@
-package com.jw.service;
+package com.jw.service.impl;
 
 import com.jw.mapper.UserloginMapper;
 import com.jw.pojo.Userlogin;
 import com.jw.pojo.UserloginExample;
+import com.jw.service.UserloginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Created by Jacey on 2017/6/29.
+ * Created by chenchuanqing
  */
 @Service
 public class UserloginServiceImpl implements UserloginService {
@@ -41,7 +42,6 @@ public class UserloginServiceImpl implements UserloginService {
 
         userloginMapper.deleteByExample(userloginExample);
     }
-
 
     public void updateByName(String name, Userlogin userlogin) {
         UserloginExample userloginExample = new UserloginExample();

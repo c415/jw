@@ -42,4 +42,9 @@ public class StudentController {
 
         return "student/showCourse";
     }
+    //修改密码
+    @RequestMapping(value = "/passwordRest")
+    public String passwordRest() throws Exception {
+        return "student/passwordRest";
+    }
 }
