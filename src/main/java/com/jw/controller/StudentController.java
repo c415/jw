@@ -1,10 +1,16 @@
 package com.jw.controller;
 
 
+import com.jw.exception.CustomException;
 import com.jw.pojo.CourseCustom;
 import com.jw.pojo.PagingVO;
+import com.jw.pojo.SelectedCourseCustom;
+import com.jw.pojo.StudentCustom;
 import com.jw.service.CourseService;
+import com.jw.service.SelectedCourseService;
 import com.jw.service.StudentService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +27,10 @@ public class StudentController {
 
     @Resource(name = "studentServiceImpl")
     private StudentService studentService;
+
+    @Resource(name = "selectedCourseServiceImpl")
+    private SelectedCourseService selectedCourseService;
+
     @RequestMapping(value = "/showCourse")
     public String stuCourseShow(Model model, Integer page) throws Exception {
 
@@ -41,6 +51,54 @@ public class StudentController {
         model.addAttribute("pagingVO", pagingVO);
 
         return "student/showCourse";
+    }
+    // 已选课程
+    @RequestMapping(value = "/selectedCourse")
+    public String selectedCourse(Model model) throws Exception {
+        //获取当前用户名
+        Subject subject = SecurityUtils.getSubject();
+        StudentCustom studentCustom = studentService.findStudentAndSelectCourseListByName((String) subject.getPrincipal());
+
+        List<SelectedCourseCustom> list = studentCustom.getSelectedCourseList();
+
+        model.addAttribute("selectedCourseList", list);
+
+        return "student/selectedCourse";
+    }
+    // 已修课程
+    @RequestMapping(value = "/overCourse")
+    public String overCourse(Model model) throws Exception {
+
+        //获取当前用户名
+        Subject subject = SecurityUtils.getSubject();
+        StudentCustom studentCustom = studentService.findStudentAndSelectCourseListByName((String) subject.getPrincipal());
+
+        List<SelectedCourseCustom> list = studentCustom.getSelectedCourseList();
+
+        model.addAttribute("selectedCourseList", list);
+
+        return "student/overCourse";
+    }
+    // 选课操作
+    @RequestMapping(value = "/stuSelectedCourse")
+    public String stuSelectedCourse(int id) throws Exception {
+        //获取当前用户名
+        Subject subject = SecurityUtils.getSubject();
+        String username = (String) subject.getPrincipal();
+
+        SelectedCourseCustom selectedCourseCustom = new SelectedCourseCustom();
+        selectedCourseCustom.setCourseid(id);
+        selectedCourseCustom.setStudentid(Integer.parseInt(username));
+
+        SelectedCourseCustom s = selectedCourseService.findOne(selectedCourseCustom);
+
+        if (s == null) {
+            selectedCourseService.save(selectedCourseCustom);
+        } else {
+            throw new CustomException("该门课程你已经选了，不能再选");
+        }
+
+        return "redirect:/student/selectedCourse";
     }
     //修改密码
     @RequestMapping(value = "/passwordRest")

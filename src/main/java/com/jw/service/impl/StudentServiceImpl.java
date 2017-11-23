@@ -1,11 +1,9 @@
-package com.jw.service;
+package com.jw.service.impl;
 
 import com.jw.mapper.StudentMapper;
 import com.jw.mapper.StudentMapperCustom;
-import com.jw.pojo.PagingVO;
-import com.jw.pojo.Student;
-import com.jw.pojo.StudentCustom;
-import com.jw.pojo.StudentExample;
+import com.jw.pojo.*;
+import com.jw.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,6 +70,16 @@ public class StudentServiceImpl implements StudentService {
     }
 
     public StudentCustom findStudentAndSelectCourseListByName(String name) throws Exception {
-        return null;
+        StudentCustom studentCustom = studentMapperCustom.findStudentAndSelectCourseListById(Integer.parseInt(name));
+
+        List<SelectedCourseCustom> list = studentCustom.getSelectedCourseList();
+
+        // 判断该课程是否修完
+        for (SelectedCourseCustom s : list) {
+            if (s.getMark() != null) {
+                s.setOver(true);
+            }
+        }
+        return studentCustom;
     }
 }
