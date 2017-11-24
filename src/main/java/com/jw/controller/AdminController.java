@@ -1,12 +1,11 @@
 package com.jw.controller;
 
-import com.jw.pojo.College;
-import com.jw.pojo.PagingVO;
-import com.jw.pojo.StudentCustom;
-import com.jw.pojo.Userlogin;
+import com.jw.exception.CustomException;
+import com.jw.pojo.*;
 import com.jw.service.CollegeService;
 import com.jw.service.StudentService;
 import com.jw.service.UserloginService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,4 +67,53 @@ public class AdminController {
         userloginService.save(userlogin);
         return "redirect:/admin/showStudent";
     }
+
+    //删除学生
+    @NotNull
+    @RequestMapping(value = "/removeStudent", method = RequestMethod.GET)
+    private String removeStudent(Integer id) throws Exception{
+
+        studentService.removeById(id);
+        return "forward:/admin/showStudent";
+    }
+
+    //搜索学生
+    @RequestMapping(value = "/selectStudent", method = RequestMethod.GET)
+    private String selectStudent(String findByName, Model model) throws Exception{
+        if(findByName == null||"".equals(findByName.trim()) ){
+            return "forward:/admin/showStudent";
+        }else{
+            List<StudentCustom> list = studentService.findByName(findByName.trim());
+            model.addAttribute("studentList", list);
+            model.addAttribute("value", findByName.trim());
+            return "admin/showStudent";
+        }
+    }
+    //跳转到修改学生信息页面
+    @RequestMapping(value = "/editStudent", method = RequestMethod.GET)
+    public String editStudent(Integer id, Model model) throws Exception{
+        if(id == null){
+            return "redirect:/admin/showStudent";
+        }
+
+        StudentCustom studentCustom = studentService.findById(id);
+        if(studentCustom == null){
+            throw new CustomException("未找到学生");
+        }
+        List<College> list = collegeService.findAll();
+
+        model.addAttribute("collegeList", list);
+        model.addAttribute("student", studentCustom);
+        return "admin/editStudent";
+    }
+
+    //修改学生信息
+    @RequestMapping(value = "/editStudent", method = RequestMethod.POST)
+    public String editStudent(StudentCustom studentCustom) throws Exception{
+        studentService.updateById(studentCustom);
+
+        return "redirect:/admin/showStudent";
+
+    }
+
 }
