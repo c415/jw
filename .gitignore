@@ -38,7 +38,7 @@ out/
 .settins/
 .project
 .classpatch
-
+mysql.properties
 #idea
 .idea/
 /idea/

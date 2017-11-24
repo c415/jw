@@ -1,8 +1,9 @@
-package com.jw.service;
+package com.jw.service.impl;
 
 import com.jw.mapper.CollegeMapper;
 import com.jw.pojo.College;
 import com.jw.pojo.CollegeExample;
+import com.jw.service.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by bojian pc on 2017/11/17.
  */
 @Service
-public class CollegeServiceImpl implements CollegeService{
+public class CollegeServiceImpl implements CollegeService {
 
     @Autowired
     private CollegeMapper collegeMapper;
