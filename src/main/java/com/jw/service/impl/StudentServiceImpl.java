@@ -2,14 +2,14 @@ package com.jw.service.impl;
 
 import com.jw.mapper.StudentMapper;
 import com.jw.mapper.StudentMapperCustom;
-<<<<<<< HEAD:src/main/java/com/jw/service/impl/StudentServiceImpl.java
+
 import com.jw.pojo.*;
-=======
+
 import com.jw.pojo.PagingVO;
 import com.jw.pojo.Student;
 import com.jw.pojo.StudentCustom;
 import com.jw.pojo.StudentExample;
->>>>>>> e2c0a51e44a72629f85612f3487edf74df3b9e15:src/main/java/com/jw/service/impl/StudentServiceImpl.java
+
 import com.jw.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
