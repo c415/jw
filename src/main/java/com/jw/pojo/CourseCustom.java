@@ -16,4 +16,10 @@ public class CourseCustom extends Course {
         return collegeName;
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+"CourseCustom{" +
+                "collegeName='" + collegeName + '\'' +
+                '}';
+    }
 }

@@ -90,4 +90,19 @@ public class Course {
     public void setScore(Integer score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseid=" + courseid +
+                ", coursename='" + coursename + '\'' +
+                ", teacherid=" + teacherid +
+                ", coursetime='" + coursetime + '\'' +
+                ", classroom='" + classroom + '\'' +
+                ", courseweek=" + courseweek +
+                ", coursetype='" + coursetype + '\'' +
+                ", collegeid=" + collegeid +
+                ", score=" + score +
+                '}';
+    }
 }

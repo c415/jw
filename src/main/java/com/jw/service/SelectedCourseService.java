@@ -20,9 +20,11 @@ public interface SelectedCourseService {
     //选课
     void save(SelectedCourseCustom selectedCourseCustom) throws Exception;
 
+    //查询指定学生成绩
+    SelectedCourseCustom findOne(SelectedCourseCustom selectedCourseCustom) throws Exception;
 
-
-
+    //根据课程ID查询课程
+    List<SelectedCourseCustom> findByCourseID(Integer id) throws Exception;
 
 
 }

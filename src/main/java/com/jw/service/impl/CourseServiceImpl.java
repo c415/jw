@@ -9,6 +9,7 @@ import com.jw.service.CourseService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private SelectedcourseMapper selectedcourseMapper;
 
-    public void upadteById(Integer id, CourseCustom courseCustom) throws Exception {
+    public void upadteById(CourseCustom courseCustom) throws Exception {
         courseMapper.updateByPrimaryKey(courseCustom);
     }
 
@@ -88,6 +89,7 @@ public class CourseServiceImpl implements CourseService {
         return courseCustom;
     }
 
+    @Transactional
     public List<CourseCustom> findByName(String name) throws Exception {
         CourseExample courseExample = new CourseExample();
         //自定义查询条件

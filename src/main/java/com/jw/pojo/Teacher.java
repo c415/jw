@@ -82,4 +82,18 @@ public class Teacher {
     public void setCollegeid(Integer collegeid) {
         this.collegeid = collegeid;
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", sex='" + sex + '\'' +
+                ", birthyear=" + birthyear +
+                ", degree='" + degree + '\'' +
+                ", title='" + title + '\'' +
+                ", grade=" + grade +
+                ", collegeid=" + collegeid +
+                '}';
+    }
 }
