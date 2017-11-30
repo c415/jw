@@ -105,4 +105,18 @@ public class StudentController {
     public String passwordRest() throws Exception {
         return "student/passwordRest";
     }
+    // 退课操作
+    @RequestMapping(value = "/outCourse")
+    public String outCourse(int id) throws Exception {
+        Subject subject = SecurityUtils.getSubject();
+        String username = (String) subject.getPrincipal();
+
+        SelectedCourseCustom selectedCourseCustom = new SelectedCourseCustom();
+        selectedCourseCustom.setCourseid(id);
+        selectedCourseCustom.setStudentid(Integer.parseInt(username));
+
+        selectedCourseService.remove(selectedCourseCustom);
+
+        return "redirect:/student/selectedCourse";
+    }
 }
