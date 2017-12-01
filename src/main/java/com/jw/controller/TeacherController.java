@@ -91,19 +91,8 @@ public class TeacherController {
     }
 
 
-    //搜索课程
-    @RequestMapping(value = "/selectCourse", method = RequestMethod.GET)
-    public String selectCourse(String findByName, Model model) throws  Exception{
-        if(findByName == null||"".equals(findByName.trim()) ){
-            return "forward:/teacher/showCourse";
-        }else{
-            List<CourseCustom> list = courseService.findByName(findByName.trim());
-            model.addAttribute("courseList", list);
-            model.addAttribute("value", findByName.trim());
-            return "teacher/showCourse";
-        }
 
-    }
+
 
 
 
