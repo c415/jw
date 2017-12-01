@@ -12,6 +12,7 @@
 	<script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 	<!-- 顶栏 -->
 	<jsp:include page="top.jsp"></jsp:include>
 	<!-- 中间主体 -->
@@ -52,7 +53,7 @@
 							  </div>
 							  <div class="form-group" style="text-align: center">
 								<button class="btn btn-default" type="submit">提交</button>
-								<button class="btn btn-default">重置</button>
+								<button type="reset" class="btn btn-default">重置</button>
 							  </div>
 						</form>
 				    </div>

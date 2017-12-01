@@ -1,4 +1,4 @@
-# 该文件作用是，配置，git忽略，哪些文件不上传，不监控其变化
+﻿# 该文件作用是，配置，git忽略，哪些文件不上传，不监控其变化
 
 # Compiled class file
 *.class
@@ -38,7 +38,7 @@ out/
 .settins/
 .project
 .classpatch
-mysql.properties
+*.properties
 #idea
 .idea/
 /idea/

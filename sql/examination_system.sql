@@ -13,6 +13,10 @@ File Encoding         : 65001
 Date: 2017-07-08 00:03:38
 */
 
+CREATE DATABASE IF NOT EXISTS examination_system ;
+
+USE examination_system;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -185,3 +189,14 @@ INSERT INTO `userlogin` VALUES ('14', '1001', '123', '1');
 INSERT INTO `userlogin` VALUES ('15', '1002', '123', '1');
 INSERT INTO `userlogin` VALUES ('16', '1003', '123', '1');
 SET FOREIGN_KEY_CHECKS=1;
+
+
+
+
+
+--添加数据11/22
+
+INSERT INTO `course` VALUES ('7', '数据结构与算法', '1001', '周五', '博学201', '36', '必修课', '1', '4');
+INSERT INTO `course` VALUES ('8', '计算机网络', '1001', '周一', '博文217', '48', '必修课', '1', '4');
+INSERT INTO `course` VALUES ('9', '操作系统', '1001', '周二', '博学201', '36', '必修课', '1', '4');
+
