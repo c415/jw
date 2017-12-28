@@ -3,6 +3,7 @@ package com.jw.controller;
 import com.jw.exception.CustomException;
 import com.jw.pojo.*;
 import com.jw.service.*;
+import com.sun.org.apache.regexp.internal.RE;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -93,6 +94,7 @@ public class AdminController {
             return "admin/showStudent";
         }
     }
+
     //跳转到修改学生信息页面
     @RequestMapping(value = "/editStudent", method = RequestMethod.GET)
     public String editStudent(Integer id, Model model) throws Exception{
@@ -220,5 +222,144 @@ public class AdminController {
         return "redirect:/admin/showCourse";
     }
 
+    //显示教师信息列表
+    @RequestMapping(value = "/showTeacher", method = RequestMethod.GET)
+    public String showTeacher(Model model, Integer page) throws Exception{
+        List<TeacherCustom> list = null;
+        PagingVO pagingVO = new PagingVO();
+        pagingVO.setTotalCount(teacherService.getCount());
+        if(page == null || page==0){
+            pagingVO.setToPageNo(1);
+            list = teacherService.findByPaging(1);
+        }else{
+            pagingVO.setToPageNo(page);
+            list = teacherService.findByPaging(page);
+        }
 
+        model.addAttribute("teacherList", list);
+        model.addAttribute("pagingVO", pagingVO);
+
+        return "admin/showTeacher";
+
+    }
+
+    //搜寻指定教师
+    @RequestMapping(value = "/selectTeacher", method = {RequestMethod.GET})
+    public String searchTeacher(String findByName, Model model) throws Exception{
+
+
+        if(findByName == null || "".equals(findByName.trim())){
+            return "redirect:/admin/showTeacher";
+        }
+
+        String name = findByName.trim();
+        List<TeacherCustom> list = teacherService.findByName(name);
+        model.addAttribute("value", name);
+        model.addAttribute("teacherList", list);
+        return "admin/showTeacher";
+    }
+
+
+    //跳转到添加教师页
+    @RequestMapping(value = "/addTeacher", method = RequestMethod.GET)
+    public String addTeacher(Model model) throws Exception{
+        List<College> list = collegeService.findAll();
+        model.addAttribute("collegeList", list);
+        return "admin/addTeacher";
+    }
+
+    //添加教师
+    @RequestMapping(value = "/addTeacher", method = RequestMethod.POST)
+    public String addTeacher(TeacherCustom teacherCustom, Model model) throws Exception{
+        Boolean result = teacherService.save(teacherCustom);
+        if(!result){
+            model.addAttribute("message","账号重复");
+            return "error";
+        }
+
+        Userlogin userlogin = new Userlogin();
+        userlogin.setUsername(teacherCustom.getUserid().toString());
+        userlogin.setPassword("123");
+        userlogin.setRole(1);
+        userloginService.save(userlogin);
+
+        return "redirect:/admin/showTeacher";
+
+    }
+
+    // 跳转到修改教师信息页
+    @RequestMapping(value = "/editTeacher", method = {RequestMethod.GET})
+    public String editTeacher(Integer id, Model model) throws Exception {
+        if (id == null) {
+            return "redirect:/admin/showTeacher";
+        }
+        TeacherCustom teacherCustom = teacherService.findById(id);
+        if (teacherCustom == null) {
+            throw new CustomException("未找到该老师");
+        }
+        List<College> list = collegeService.findAll();
+
+        model.addAttribute("collegeList", list);
+        model.addAttribute("teacher", teacherCustom);
+
+
+        return "admin/editTeacher";
+    }
+
+
+    // 修改教师信息
+    @RequestMapping(value = "/editTeacher", method = {RequestMethod.POST})
+    public String editTeacher(TeacherCustom teacherCustom) throws Exception {
+
+        teacherService.updateById(teacherCustom);
+
+        //重定向
+        return "redirect:/admin/showTeacher";
+    }
+
+    //删除教师
+    @RequestMapping("/removeTeacher")
+    public String removeTeacher(Integer id) throws Exception {
+        if (id == null) {
+            //加入没有带教师id就进来的话就返回教师显示页面
+            return "admin/showTeacher";
+        }
+        teacherService.removeById(id);
+        userloginService.removeByName(id.toString());
+
+        return "redirect:/admin/showTeacher";
+    }
+
+        /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<其他操作>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+    // 普通用户账号密码重置
+    @RequestMapping("/userPasswordRest")
+    public String userPasswordRestUI() throws Exception {
+        return "admin/userPasswordRest";
+    }
+
+    // 普通用户账号密码重置处理
+    @RequestMapping(value = "/userPasswordRest", method = {RequestMethod.POST})
+    public String userPasswordRest(Userlogin userlogin) throws Exception {
+
+        Userlogin u = userloginService.findByName(userlogin.getUsername());
+
+        if (u != null) {
+            if (u.getRole() == 0) {
+                throw new CustomException("该账户为管理员账户，没法修改");
+            }
+            u.setPassword(userlogin.getPassword());
+            userloginService.updateByName(userlogin.getUsername(), u);
+        } else {
+            throw new CustomException("没找到该用户");
+        }
+
+        return "admin/userPasswordRest";
+    }
+
+    // 本账户密码重置
+    @RequestMapping("/passwordRest")
+    public String passwordRestUI() throws Exception {
+        return "admin/passwordRest";
+    }
 }
