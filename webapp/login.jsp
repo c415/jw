@@ -53,7 +53,7 @@
         <div class="form-group">
 
           <div class="col-sm-9 " style="margin-left: 15px;">
-            <input type="checkbox" />记住密码
+            
             <div style="text-align: center; color: #ff4652;">
               ${message}
             </div>
