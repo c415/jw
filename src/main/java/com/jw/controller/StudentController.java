@@ -14,6 +14,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -118,5 +119,18 @@ public class StudentController {
         selectedCourseService.remove(selectedCourseCustom);
 
         return "redirect:/student/selectedCourse";
+    }
+    //搜索课程
+    @RequestMapping(value = "/selectCourse", method = RequestMethod.GET)
+    public String selectCourse(String findByName, Model model) throws  Exception{
+        if(findByName == null||"".equals(findByName.trim()) ){
+            return "forward:/student/showCourse";
+        }else{
+            List<CourseCustom> list = courseService.findByName(findByName.trim());
+            model.addAttribute("courseList", list);
+            model.addAttribute("value", findByName.trim());
+            return "student/showCourse";
+        }
+
     }
 }

@@ -29,7 +29,7 @@
 				    <div class="panel-heading">
 						<div class="row">
 					    	<h1 class="col-md-5">课程列表</h1>
-							<form class="bs-example bs-example-form col-md-5" role="form" style="margin: 20px 0 10px 0;" action="/admin/selectCourse" id="form1" method="post">
+							<form class="bs-example bs-example-form col-md-5" role="form" style="margin: 20px 0 10px 0;" action="/student/selectCourse" id="form1" method="GET">
 								<div class="input-group">
 									<input type="text" class="form-control" placeholder="请输入课程名" name="findByName">
 									<span class="input-group-addon btn" onclick="document.getElementById('form1').submit" id="sub">搜索</span>
