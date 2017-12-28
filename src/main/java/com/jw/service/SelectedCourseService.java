@@ -29,5 +29,9 @@ public interface SelectedCourseService {
     SelectedCourseCustom findOne(SelectedCourseCustom selectedCourseCustom) throws Exception;
 
 
+    //打分
+    void updataOne(SelectedCourseCustom selectedCourseCustom) throws Exception;
+
+
 
 }

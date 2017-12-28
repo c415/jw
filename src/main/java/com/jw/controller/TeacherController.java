@@ -68,7 +68,7 @@ public class TeacherController {
         return "teacher/showGrade";
     }
 
-    // 打分链接
+    // 打分跳转界面
     @RequestMapping(value = "/markLink", method = {RequestMethod.GET})
         public String markUI(SelectedCourseCustom scc, Model model) throws Exception {
 
@@ -81,5 +81,35 @@ public class TeacherController {
         return "teacher/mark";
     }
 
+    //打分
+    @RequestMapping(value = "/mark", method = {RequestMethod.POST})
+    public String mark(SelectedCourseCustom scc) throws Exception {
+
+
+        selectedCourseService.updataOne(scc);
+        return "redirect:/teacher/gradeCourse?id="+scc.getCourseid();
+    }
+
+
+    //搜索课程
+    @RequestMapping(value = "/selectCourse", method = RequestMethod.GET)
+    public String selectCourse(String findByName, Model model) throws  Exception{
+        if(findByName == null||"".equals(findByName.trim()) ){
+            return "forward:/teacher/showCourse";
+        }else{
+            List<CourseCustom> list = courseService.findByName(findByName.trim());
+            model.addAttribute("courseList", list);
+            model.addAttribute("value", findByName.trim());
+            return "teacher/showCourse";
+        }
+
+    }
+
+
+    //修改密码
+    @RequestMapping(value = "/passwordRest")
+    public String passwordRest() throws Exception {
+        return "teacher/passwordRest";
+    }
 
 }
